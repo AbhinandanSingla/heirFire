@@ -1343,7 +1343,11 @@
     }
 
     function equation(transport_exp,distance,service_time,dob){
-        return 0.231945-(46.12941*0.14)+(51.4485*0.6)-(2.3412*0.2)+(25.7388*0.15)-(2.80173*transport_exp/1000)+(0.138109*distance/100)-(16.5957*service_time/10)+(36.76633*calculate_age(dob)/100);
+        if (dob==="male"){
+    return 1;
+    }
+        return 0.231945-(46.12941*0.14)+(51.4485*0.6)-(2.3412*0.2)+(25.7388*0.15)-(2.80173*transport_exp/1000)+(0.138109*distance/100)-(16.5957*service_time/10)+(36.76633*calculate_age(dob)/100)+(0.08648*2.18239)-(45.218776*90.5)+(25.49951*dfailure)-(6.5512*highestEducation/10)-(16.3088*children/10)-(0.70676*drinker)+(1.0418*smoker)+(11.2638*pet
+        /10)+(14.3706*weight/100)+(1.4867*height/1000);
     }
 
 </script>
