@@ -537,3 +537,11 @@
 .u-section-3 .u-text-1 {
   margin: 21px auto 60px;
 }
+.result{
+  justify-content: center;
+
+}
+
+.score{
+  text-align: center;
+}

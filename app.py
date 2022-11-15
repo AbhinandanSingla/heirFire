@@ -19,7 +19,7 @@ def contact():
 
 @app.route('/employability')
 def employability():
-    return render_template('pages/Get-Employability-Score.html')
+    return render_template('pages/function.html')
 
 
 @app.route('/score')
