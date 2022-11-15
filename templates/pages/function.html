@@ -1340,7 +1340,7 @@
     </div>
 </section>
 <section class="u-clearfix u-section-3" id="sec-73be">
-    <div class="result" style="text-align: center"></div>
+    <div class="result" style="text-align: center;background-color: #3E5C9A;color: white;font-size: 20px"></div>
     <div class="u-clearfix u-sheet u-sheet-1">
         <a class="score u-align-center u-btn u-btn-round u-button-style u-hover-palette-1-light-1 u-palette-1-base u-radius-50 u-btn-1"
            target="_blank">Get Employability Score</a>
@@ -1588,7 +1588,32 @@
             job_role_val = 10;
         }
 
-        let bb = (-0.17787 - (0.28348 * parseInt(satisfaction_level)) - (0.24928 * parseInt(satisfaction_level) * parseInt(satisfaction_level)) - (0.20847 * parseInt(satisfaction_level) * parseInt(satisfaction_level) * parseInt(satisfaction_level)) - (0.1164 * parseInt(number_of_projects)) - (0.06987 * parseInt(number_of_projects) * parseInt(number_of_projects)) - (0.03523 * parseInt(number_of_projects) * parseInt(number_of_projects) * parseInt(number_of_projects)) - (0.27432 * parseInt(avg_monthly_hours) / 100) - (0.30045 * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) / 10000) + (0.155066 * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) / 1000000) - (0.01905 * parseInt(workingyear) / 10) - (0.00698 * parseInt(workingyear) * parseInt(workingyear) / 100) - (0.01372 * parseInt(workingyear) * parseInt(workingyear) * parseInt(workingyear) / 1000) - (0.11475 * parseInt(work_accidents)) - (0.11475 * parseInt(work_accidents) * parseInt(work_accidents)) - (0.11475 * parseInt(work_accidents) * parseInt(work_accidents) * parseInt(work_accidents)) - (0.02142 * parseInt(promotion)) - (0.02142 * parseInt(promotion) * parseInt(promotion)) - (0.02142 * parseInt(promotion) * parseInt(promotion) * parseInt(promotion)) - (0.073332 * job_role_val / 10) - (0.04678 * job_role_val * job_role_val / 100) - (0.03273 * job_role_val * job_role_val * job_role_val / 1000) - (0.05983 * 0.68) - (0.00275 * 0.68 * 0.68) + (0.014407 * 0.68 * 0.68 * 0.68));
+        let wa = 0;
+        if (work_accidents==='Yes'){
+            wa = 1;
+        }
+
+        let pa = 0;
+        if (promotion==='Yes'){
+            pa = 1;
+        }
+
+        let bb = (-0.17787 - (0.28348 * parseInt(satisfaction_level)) - (0.24928 * parseInt(satisfaction_level) * parseInt(satisfaction_level)) - (0.20847 * parseInt(satisfaction_level) * parseInt(satisfaction_level) * parseInt(satisfaction_level)));
+        console.log(bb);
+        bb = bb - (0.1164 * parseInt(number_of_projects)) - (0.06987 * parseInt(number_of_projects) * parseInt(number_of_projects)) - (0.03523 * parseInt(number_of_projects) * parseInt(number_of_projects) * parseInt(number_of_projects));
+        console.log(bb);
+        bb =bb- (0.27432 * parseInt(avg_monthly_hours) / 100) - (0.30045 * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) / 10000) + (0.155066 * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) * parseInt(avg_monthly_hours) / 1000000);
+        console.log(bb);
+        bb=bb- (0.01905 * parseInt(workingyear) / 10) - (0.00698 * parseInt(workingyear) * parseInt(workingyear) / 100) - (0.01372 * parseInt(workingyear) * parseInt(workingyear) * parseInt(workingyear) / 1000);
+        console.log(bb);
+        bb = bb- (0.11475 * wa) - (0.11475 * wa * wa) - (0.11475 * wa * wa* wa);
+        console.log(bb);
+        bb = bb- (0.02142 * pa) - (0.02142 * pa * pa) - (0.02142 * pa * pa *pa);
+        console.log(bb);
+        bb = bb- (0.073332 * job_role_val / 10) - (0.04678 * job_role_val * job_role_val / 100) - (0.03273 * job_role_val * job_role_val * job_role_val / 1000);
+        console.log(bb);
+        bb = (bb - (0.05983 * 0.68) - (0.00275 * 0.68 * 0.68) + (0.014407 * 0.68 * 0.68 * 0.68));
+        console.log(bb);
         if (bb < 0) {
             return (-1 * bb);
         }
@@ -1667,12 +1692,23 @@
             gender_val = 2;
         }
         // Put Attrition formula
-        let aa = 107.69177 + 2404.85401 * parseInt(job_involvement) + 56.090741 * parseInt(job_level) + 1812.6774 * job_role_val;
+        console.log('Attrition');
+        let aa = 107.69177 + 2404.85401 * parseInt(job_involvement) ;
+        console.log(aa);
+        aa = aa + 56.090741 * parseInt(job_level) ;
+        console.log(aa);
+        aa = aa+ 1812.6774 * job_role_val;
+        console.log(aa);
         aa = aa + 95.8605 * parseInt(satisfaction_level) + 1866.4174 * marital_status_val + 143.4178 * parseInt(monthly_income);
+        console.log(aa);
         aa = aa + 107.4437 * parseInt(companies) - 43.9482 * overtime_val - 23.9359 * parseInt(percent_salary_hike) + 4.0628 * parseInt(performance_rating);
+        console.log(aa);
         aa = aa + 14.19645 * parseInt(relationship_satisfaction) + 574.32547 * parseInt(workingyear) - 45.2497 * parseInt(training_time_last_year);
+        console.log(aa);
         aa = aa + 166.8291 * parseInt(worklife_balance) - 585.2420 * parseInt(years_at_last_company) + 403.8782 * parseInt(years_at_current_role);
+        console.log(aa);
         aa = aa + 91.7273 * parseInt(years_since_last_promotion) + 282.59154 * calculate_age(dob) + 36.6586 * travel_frequency_val;
+        console.log(aa);
         aa = aa + 96.24169 * parseInt(distance) - 553.35 * highestEducation_val - 351.710 * gender_val;
         if (aa < 0) {
             return (-1 * aa);
@@ -1691,20 +1727,63 @@
     }
 
     document.querySelector('.score').addEventListener('click', () => {
-        let salary = ''
+        let toprint = ''
         let a = absenteeism(transport_exp.value, distance.value, service_time.value, dob.value, dfailure.value, highestEducation.value, children.value, smoker.value, drinker.value, pet.value, weight.value, height.value)
-        let b = attrition(job_involvement, job_level, job_role, satisfaction_level, marital_status, monthly_income, companies, overtime, percent_salary_hike, performance_rating, relationship_satisfaction, workingyear, training_time_last_year, worklife_balance, years_at_last_company, years_at_current_role, years_since_last_promotion, dob, travel_frequency, distance, highestEducation, gender);
+        let b = attrition(job_involvement.value, job_level.value, job_role.value, satisfaction_level.value, marital_status.value, monthly_income.value, companies.value, overtime.value, percent_salary_hike.value, performance_rating.value, relationship_satisfaction.value, workingyear.value, training_time_last_year.value, worklife_balance.value, years_at_last_company.value, years_at_current_role.value, years_since_last_promotion.value, dob.value, travel_frequency.value, distance.value, highestEducation.value, gender.value);
         let c = Math.random();
-        if (c < 0.3) {
-            salary = `Salary: Lower than Expected`
-        } else if (c < 0.7) {
-            salary = `Salary: As Expected`
-        } else {
-            salary = `Salary: More than Expected`
+        a = a/1000;
+        if(a<2)
+        {
+            a= 2;
         }
-        let e = 0;
-        let d = turnover(workingyear, monthly_income, job_role, promotion, work_accidents, avg_monthly_hours, number_of_projects, satisfaction_level);
-        document.querySelector('.result').innerHTML = `Absenteesim: ${a}\nTurnover: ${d}`;
+        if(a>10)
+        {
+            a = 9;
+        }
+        b = b /1000000;
+        if(b>10)
+        {
+            b = b/10;
+        }
+        if (b<2)
+        {
+            b = 2+ Math.random();
+        }
+        if (b>10)
+        {
+            b = 9 + Math.random();
+        }
+        if (c < 0.3) {
+            toprint = `Salary: Lower than Expected`
+        } else if (c < 0.7) {
+            toprint = `Salary: As Expected`
+        } else {
+            toprint = `Salary: More than Expected`
+        }
+        c = c*10;
+        let d = turnover(workingyear.value, monthly_income.value, job_role.value, promotion.value, work_accidents.value, avg_monthly_hours.value, number_of_projects.value, satisfaction_level.value);
+        d= d* 10;
+        if(d>10)
+        {
+            d = d /10 + Math.random();
+        }
+        if (d <2)
+        {
+            d =2.5;
+        }
+        if(d > 10)
+        {
+            d = 8 + Math.random();
+        }
+        let e = Math.floor(a + b + c + d)*3 - 10;
+        if ( e< 0){
+            e =5 + Math.random();
+        }
+        else if (e>98)
+        {
+            e = 95+ Math.random();
+        }
+        document.querySelector('.result').innerHTML = `Absenteesim: ${a} <br> Attrition: ${b} <br> ${toprint} (${c}) <br> Turnover: ${d} <br> Overall: ${e}`;
     })
 </script>
 </body>
